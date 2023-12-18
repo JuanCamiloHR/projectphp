@@ -1,8 +1,10 @@
 <?php
 //use Illuminate\Http\Request; // se importó esta clase
 
-use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+
 
 
 /**
@@ -88,4 +90,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::resource('posts', PostController::class)->except(['show']); // importando el controlador a usar.
+                                                                // trabajar con todo, excepto con la ruta mostrar
+                                                                // de manera automática crea esas necesidades (las del page controller, get, etc)
 require __DIR__.'/auth.php';
