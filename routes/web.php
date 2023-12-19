@@ -79,18 +79,26 @@ Route::get('blog/{slug}', [PageController::class, 'post'])->name('post');
 Route::controller(PageController::class)->group(function () {     
 
     Route::get('/',           'home')->name('home');        // ruta home 
-    Route::get('blog',        'blog')->name('blog');       // ruta de publicaciones
+   // Route::get('blog',        'blog')->name('blog');       // ruta de publicaciones. Se comentó para no trabajar con la lista de publicaciones.
     Route::get('blog/{post:slug}', 'post')->name('post'); // ruta de publicaciones de forma individual.
                                                          // el slug es una propiedad del post
 });
 
 
 // Para inicio de sesión, con breeze
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//Route::get('/dashboard', function () {
+   // return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
 
-Route::resource('posts', PostController::class)->except(['show']); // importando el controlador a usar.
+
+Route::redirect('dashboard', 'posts')->name('dashboard'); // redirección del dashboard al post
+
+//Route::resource('posts', PostController::class)->except(['show']); // importando el controlador a usar.
                                                                 // trabajar con todo, excepto con la ruta mostrar
                                                                 // de manera automática crea esas necesidades (las del page controller, get, etc)
+
+
+                                                
+Route::resource('posts', PostController::class)->middleware('auth')->except(['show']); // middleware está protegiendo a los post, es decir, no cualquiera puede ir a ellos
+
 require __DIR__.'/auth.php';
