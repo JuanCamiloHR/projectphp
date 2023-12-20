@@ -78,9 +78,9 @@ Route::get('blog/{slug}', [PageController::class, 'post'])->name('post');
 // creando un grupo
 Route::controller(PageController::class)->group(function () {     
 
-    Route::get('/',           'home')->name('home');        // ruta home 
+    Route::get('/',                'home')->name('home');        // ruta home 
    // Route::get('blog',        'blog')->name('blog');       // ruta de publicaciones. Se comentó para no trabajar con la lista de publicaciones.
-    Route::get('blog/{post:slug}', 'post')->name('post'); // ruta de publicaciones de forma individual.
+   Route::get('blog/{post:slug}', 'post')->name('post'); // ruta de publicaciones de forma individual.
                                                          // el slug es una propiedad del post
 });
 

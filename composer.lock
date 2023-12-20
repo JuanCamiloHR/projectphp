@@ -21,6 +21,7 @@
                 "shasum": ""
             },
             "require": {
+                "ext-json":"*",
                 "php": "^8.0"
             },
             "require-dev": {

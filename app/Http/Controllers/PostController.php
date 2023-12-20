@@ -20,7 +20,7 @@ class PostController extends Controller
     // Método para formulario de "crear"
     public function create(Post $post) 
     {
-        return view('posts.create', ['post' => $post]);
+        return view('posts.create', compact('post'));
     }
 
     //Función para guardar un nuevo elemento creado. Crea finalmente.
@@ -46,7 +46,7 @@ class PostController extends Controller
     //Formulario de edición
     public function edit(Post $post) 
     {
-        return view('posts.edit', ['post' => $post]);  // requiere de un registro que queremos edidat
+        return view('posts.edit', compact('post'));  // requiere de un registro que queremos edidat
     } // se deben crear las vistas
 
     // editar, finalmente.
